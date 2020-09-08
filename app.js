@@ -30,10 +30,13 @@ const menu = {
     };
   },
   addDishToCourse(courseName, dishName, dishPrice) {
-    dish = {
+    const dish = {
       name: dishName,
       price: dishPrice,
     };
     return this._courses[courseName].push(dish);
   },
+  getRandomDishCourseName(courseName) {
+      const dishes = this._courses[course]
+  }
 };
