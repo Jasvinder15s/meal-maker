@@ -37,6 +37,15 @@ const menu = {
     return this._courses[courseName].push(dish);
   },
   getRandomDishCourseName(courseName) {
-      const dishes = this._courses[course]
+      const dishes = this._courses[course];
+      const randomIndex = Math.floor(Math.random * dishes.length);
+      return dishes[randomIndex];
+  },
+  generateRandomMeal() {
+      const appetizer = this.getRandomDishCourseName("appetizers");
+      const main = this.getRandomDishCourseName("mains");
+      const dessert = this.getRandomDishCourseName("desserts");
+      const totalPrice = appetizer.price + main.price + dessert.price;
+      return `Your meal is ${appetizer.name}, ${main.name}, and ${dessert.name}, and the total price is ${totalPrice}`
   }
 };
