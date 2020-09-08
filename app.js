@@ -23,10 +23,17 @@ const menu = {
     this._courses.desserts = desserts;
   },
   get courses() {
-      return {
-          appetizers: this.appetizers,
-          mains: this.mains,
-          desserts: this.desserts,
-      };
+    return {
+      appetizers: this.appetizers,
+      mains: this.mains,
+      desserts: this.desserts,
+    };
+  },
+  addDishToCourse(courseName, dishName, dishPrice) {
+    dish = {
+      name: dishName,
+      price: dishPrice,
+    };
+    return this._courses[courseName].push(dish);
   },
 };
