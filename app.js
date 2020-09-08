@@ -5,13 +5,13 @@ const menu = {
     desserts: [],
   },
   get appetizers() {
-    return this.courses.appetizers;
+    return this._courses.appetizers;
   },
   get mains() {
-    return this.courses.mains;
+    return this._courses.mains;
   },
   get desserts() {
-    return this.courses.desserts;
+    return this._courses.desserts;
   },
   set appetizers(appetizers) {
     this._courses.appetizers = apptizers;
@@ -36,16 +36,32 @@ const menu = {
     };
     return this._courses[courseName].push(dish);
   },
-  getRandomDishCourseName(courseName) {
-      const dishes = this._courses[course];
+  getRandomDishFromCourse(courseName) {
+      const dishes = this._courses[courseName];
       const randomIndex = Math.floor(Math.random * dishes.length);
       return dishes[randomIndex];
   },
   generateRandomMeal() {
-      const appetizer = this.getRandomDishCourseName("appetizers");
-      const main = this.getRandomDishCourseName("mains");
-      const dessert = this.getRandomDishCourseName("desserts");
+      const appetizer = this.getRandomDishFromCourse('appetizers');
+      const main = this.getRandomDishFromCourse('mains');
+      const dessert = this.getRandomDishFromCourse('desserts');
       const totalPrice = appetizer.price + main.price + dessert.price;
-      return `Your meal is ${appetizer.name}, ${main.name}, and ${dessert.name}, and the total price is ${totalPrice}`
+      return `Your meal is ${appetizer.name}, ${main.name}, 
+      and ${dessert.name}, and the total price is ${totalPrice}`
   }
 };
+
+menu.addDishToCourse('appetizers', 'salad', 4.00);
+menu.addDishToCourse('appetizers', 'wings', 4.50);
+menu.addDishToCourse('appetizers', 'fries', 5.00);
+
+menu.addDishToCourse("mains", "steak", 10.25);
+menu.addDishToCourse("mains", "salmon", 7.75);
+menu.addDishToCourse("mains", "tofu", 11.20);
+
+menu.addDishToCourse("desserts", "ice cream", 3.0);
+menu.addDishToCourse("desserts", "coffe", 3.00);
+menu.addDishToCourse("desserts", "cake", 3.25);
+
+const meal = menu.generateRandomMeal();
+console.log(meal);
